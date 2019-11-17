@@ -54,38 +54,6 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: fea1dbbf-6d07-4f50-b8ec-3d29344a4473
-  # CodePipelineArtifactStoreBucketPolicy:
-  #   Type: 'AWS::S3::BucketPolicy'
-  #   Properties:
-  #     Bucket: !Ref CodePipelineArtifactStoreBucket
-  #     PolicyDocument:
-  #       Version: 2012-10-17
-  #       Statement:
-  #         - Sid: DenyUnEncryptedObjectUploads
-  #           Effect: Deny
-  #           Principal: '*'
-  #           Action: 's3:PutObject'
-  #           Resource: !Join 
-  #             - ''
-  #             - - !GetAtt CodePipelineArtifactStoreBucket.Arn
-  #               - /*
-  #           Condition:
-  #             StringNotEquals:
-  #               's3:x-amz-server-side-encryption': 'aws:kms'
-  #         - Sid: DenyInsecureConnections
-  #           Effect: Deny
-  #           Principal: '*'
-  #           Action: 's3:*'
-  #           Resource: !Join 
-  #             - ''
-  #             - - !GetAtt CodePipelineArtifactStoreBucket.Arn
-  #               - /*
-  #           Condition:
-  #             Bool:
-  #               'aws:SecureTransport': false
-  #   Metadata:
-  #     'AWS::CloudFormation::Designer':
-  #       id: c026da11-e9fd-4334-b139-c355c505d670
   AppPipelineWebhook:
     Type: 'AWS::CodePipeline::Webhook'
     Properties:
@@ -181,57 +149,33 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                  - 'codecommit:CancelUploadArchive'
-                  - 'codecommit:GetBranch'
-                  - 'codecommit:GetCommit'
-                  - 'codecommit:GetUploadArchiveStatus'
-                  - 'codecommit:UploadArchive'
-                Resource: '*'
-              - Effect: Allow
-                Action:
+                  # - 'codecommit:CancelUploadArchive'
+                  # - 'codecommit:GetBranch'
+                  # - 'codecommit:GetCommit'
+                  # - 'codecommit:GetUploadArchiveStatus'
+                  # - 'codecommit:UploadArchive'
                   - 'codedeploy:CreateDeployment'
                   - 'codedeploy:GetApplicationRevision'
                   - 'codedeploy:GetDeployment'
                   - 'codedeploy:GetDeploymentConfig'
                   - 'codedeploy:RegisterApplicationRevision'
-                Resource: '*'
-              - Effect: Allow
-                Action:
                   - 'codebuild:BatchGetBuilds'
                   - 'codebuild:StartBuild'
-                Resource: '*'
-              - Effect: Allow
-                Action:
-                  - 'devicefarm:ListProjects'
-                  - 'devicefarm:ListDevicePools'
-                  - 'devicefarm:GetRun'
-                  - 'devicefarm:GetUpload'
-                  - 'devicefarm:CreateUpload'
-                  - 'devicefarm:ScheduleRun'
-                Resource: '*'
-              - Effect: Allow
-                Action:
-                  - 'lambda:InvokeFunction'
-                  - 'lambda:ListFunctions'
-                Resource: '*'
-              - Effect: Allow
-                Action:
+                  # - 'lambda:InvokeFunction'
+                  # - 'lambda:ListFunctions'
                   - 'iam:PassRole'
-                Resource: '*'
-              - Effect: Allow
-                Action:
-                  - 'elasticbeanstalk:*'
-                  - 'ec2:*'
-                  - 'elasticloadbalancing:*'
-                  - 'autoscaling:*'
+                  # - 'elasticbeanstalk:*'
+                  # - 'ec2:*'
+                  # - 'elasticloadbalancing:*'
+                  # - 'autoscaling:*'
                   - 'cloudwatch:*'
                   - 's3:*'
                   - 'sns:*'
                   - 'cloudformation:*'
-                  - 'rds:*'
-                  - 'sqs:*'
-                  - 'ecs:*'
-                  - 'logs:*'
+                  # - 'rds:*'
+                  # - 'sqs:*'
+                  # - 'ecs:*'
+                  # - 'logs:*'
                 Resource: '*'
     Metadata:
       'AWS::CloudFormation::Designer':
