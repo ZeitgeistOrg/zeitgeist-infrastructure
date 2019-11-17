@@ -270,7 +270,7 @@ Resources:
               RunOrder: 3
       ArtifactStore:
         Type: S3
-        Location: arn:aws:s3:::codepipeline-us-west-2-425698740047
+        Location: codepipeline-us-west-2-425698740047
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 2cab2af5-6de6-4759-8172-51c351783d31
