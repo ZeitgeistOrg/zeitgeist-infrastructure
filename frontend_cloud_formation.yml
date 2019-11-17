@@ -164,8 +164,7 @@ Resources:
                   - 'codebuild:StartBuild'
                 Resource: '*'
                 Effect: Allow
-              - Effect: Allow
-                Action:
+              - Action:
                   - 'devicefarm:ListProjects'
                   - 'devicefarm:ListDevicePools'
                   - 'devicefarm:GetRun'
@@ -173,21 +172,23 @@ Resources:
                   - 'devicefarm:CreateUpload'
                   - 'devicefarm:ScheduleRun'
                 Resource: '*'
-              - Effect: Allow
-                Action:
+                Effect: Allow
+              - Action:
                   - 'servicecatalog:ListProvisioningArtifacts'
                   - 'servicecatalog:CreateProvisioningArtifact'
                   - 'servicecatalog:DescribeProvisioningArtifact'
                   - 'servicecatalog:DeleteProvisioningArtifact'
                   - 'servicecatalog:UpdateProduct'
+                Effect: Allow
                 Resource: '*'
-              - Effect: Allow
-                Action:
+              - Action:
                   - 'cloudformation:ValidateTemplate'
+                Effect: Allow
                 Resource: '*'
-              - Effect: Allow
-                Action:
+              - Action:
                   - 'ecr:DescribeImages'
+                Effect: Allow
+                Resource: '*'
     Metadata:
       'AWS::CloudFormation::Designer':
         id: b5be8d3c-c475-40a8-9844-f07fec926dce
