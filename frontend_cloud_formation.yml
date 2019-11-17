@@ -54,38 +54,38 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: fea1dbbf-6d07-4f50-b8ec-3d29344a4473
-  CodePipelineArtifactStoreBucketPolicy:
-    Type: 'AWS::S3::BucketPolicy'
-    Properties:
-      Bucket: !Ref CodePipelineArtifactStoreBucket
-      PolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Sid: DenyUnEncryptedObjectUploads
-            Effect: Deny
-            Principal: '*'
-            Action: 's3:PutObject'
-            Resource: !Join 
-              - ''
-              - - !GetAtt CodePipelineArtifactStoreBucket.Arn
-                - /*
-            Condition:
-              StringNotEquals:
-                's3:x-amz-server-side-encryption': 'aws:kms'
-          - Sid: DenyInsecureConnections
-            Effect: Deny
-            Principal: '*'
-            Action: 's3:*'
-            Resource: !Join 
-              - ''
-              - - !GetAtt CodePipelineArtifactStoreBucket.Arn
-                - /*
-            Condition:
-              Bool:
-                'aws:SecureTransport': false
-    Metadata:
-      'AWS::CloudFormation::Designer':
-        id: c026da11-e9fd-4334-b139-c355c505d670
+  # CodePipelineArtifactStoreBucketPolicy:
+  #   Type: 'AWS::S3::BucketPolicy'
+  #   Properties:
+  #     Bucket: !Ref CodePipelineArtifactStoreBucket
+  #     PolicyDocument:
+  #       Version: 2012-10-17
+  #       Statement:
+  #         - Sid: DenyUnEncryptedObjectUploads
+  #           Effect: Deny
+  #           Principal: '*'
+  #           Action: 's3:PutObject'
+  #           Resource: !Join 
+  #             - ''
+  #             - - !GetAtt CodePipelineArtifactStoreBucket.Arn
+  #               - /*
+  #           Condition:
+  #             StringNotEquals:
+  #               's3:x-amz-server-side-encryption': 'aws:kms'
+  #         - Sid: DenyInsecureConnections
+  #           Effect: Deny
+  #           Principal: '*'
+  #           Action: 's3:*'
+  #           Resource: !Join 
+  #             - ''
+  #             - - !GetAtt CodePipelineArtifactStoreBucket.Arn
+  #               - /*
+  #           Condition:
+  #             Bool:
+  #               'aws:SecureTransport': false
+  #   Metadata:
+  #     'AWS::CloudFormation::Designer':
+  #       id: c026da11-e9fd-4334-b139-c355c505d670
   AppPipelineWebhook:
     Type: 'AWS::CodePipeline::Webhook'
     Properties:
@@ -231,6 +231,7 @@ Resources:
                   - 'rds:*'
                   - 'sqs:*'
                   - 'ecs:*'
+                  - 'logs:*'
                 Resource: '*'
     Metadata:
       'AWS::CloudFormation::Designer':
