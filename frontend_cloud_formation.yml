@@ -49,28 +49,34 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: ccee27be-3e0b-4fdb-9deb-ccd98e4c3f93
-    Type: 'AWS::S3::BucketPolicy'
-    Properties:
-      Bucket: !Ref CodePipelineArtifactStoreBucket
-      PolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Sid: DenyUnEncryptedObjectUploads
-            Effect: Deny
-            Principal: "*"
-            Action: s3:PutObject
-            Resource: arn:aws:s3:::codepipeline-us-west-2-425698740047/*
-            Condition:
-              StringNotEquals:
-                s3:x-amz-server-side-encryption: aws:kms
-          - Sid: DenyInsecureConnections
-            Effect: Deny
-            Principal: "*"
-            Action: s3:*
-            Resource: arn:aws:s3:::codepipeline-us-west-2-425698740047/*
-            Condition:
-              Bool:
-                aws:SecureTransport: 'false'
+  # CodePipelineArtifactStoreBucket:
+  #   Type: 'AWS::S3::Bucket'
+  #   Metadata:
+  #     'AWS::CloudFormation::Designer':
+  #       id: fea1dbbf-6d07-4f50-b8ec-3d29344a4473
+  # CodePipelineArtifactStoreBucketPolicy:
+  #   Type: 'AWS::S3::BucketPolicy'
+  #   Properties:
+  #     Bucket: !Ref CodePipelineArtifactStoreBucket
+  #     PolicyDocument:
+  #       Version: 2012-10-17
+  #       Statement:
+  #         - Sid: DenyUnEncryptedObjectUploads
+  #           Effect: Deny
+  #           Principal: "*"
+  #           Action: s3:PutObject
+  #           Resource: arn:aws:s3:::codepipeline-us-west-2-425698740047/*
+  #           Condition:
+  #             StringNotEquals:
+  #               s3:x-amz-server-side-encryption: aws:kms
+  #         - Sid: DenyInsecureConnections
+  #           Effect: Deny
+  #           Principal: "*"
+  #           Action: s3:*
+  #           Resource: arn:aws:s3:::codepipeline-us-west-2-425698740047/*
+  #           Condition:
+  #             Bool:
+  #               aws:SecureTransport: 'false'
   AppPipelineWebhook:
     Type: 'AWS::CodePipeline::Webhook'
     Properties:
